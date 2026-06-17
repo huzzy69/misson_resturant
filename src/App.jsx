@@ -299,11 +299,45 @@ const categoryOrder = [
 // ─── Components ───
 
 function DishCarousel({ activeFilter, onFilterChange }) {
-  const items = dishCategories.map((dish) => (
+  const trackRef = useRef(null);
+  const wrapperRef = useRef(null);
+
+  const handleCardClick = (dishId, e) => {
+    onFilterChange(dishId);
+
+    // Scroll the clicked card to the center of the visible area
+    const card = e.currentTarget;
+    const wrapper = wrapperRef.current;
+    if (!wrapper || !card) return;
+
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+
+    // How far the card center is from the wrapper center
+    const wrapperCenter = wrapperRect.left + wrapperRect.width / 2;
+    const cardCenter = cardRect.left + cardRect.width / 2;
+    const offset = cardCenter - wrapperCenter;
+
+    // Pause animation
+    if (trackRef.current) {
+      trackRef.current.style.animationPlayState = 'paused';
+    }
+
+    wrapper.scrollBy({ left: offset, behavior: 'smooth' });
+
+    // Resume animation after scroll settles
+    setTimeout(() => {
+      if (trackRef.current) {
+        trackRef.current.style.animationPlayState = 'running';
+      }
+    }, 700);
+  };
+
+  const items = (ariahidden) => dishCategories.map((dish) => (
     <div
-      key={dish.id}
+      key={dish.id + (ariahidden ? '-clone' : '')}
       className={`dish-card ${activeFilter === dish.id ? 'dish-card-active' : ''}`}
-      onClick={() => onFilterChange(dish.id)}
+      onClick={ariahidden ? undefined : (e) => handleCardClick(dish.id, e)}
       title={`Filter by ${dish.name}`}
     >
       <span className="dish-card-label">{dish.name}</span>
@@ -313,13 +347,13 @@ function DishCarousel({ activeFilter, onFilterChange }) {
   ));
 
   return (
-    <div className="dish-carousel-wrapper">
+    <div className="dish-carousel-wrapper" ref={wrapperRef}>
       <div className="dish-carousel">
-        <div className="dish-carousel-track" aria-hidden="false">
-          {items}
+        <div className="dish-carousel-track" ref={trackRef} aria-hidden="false">
+          {items(false)}
         </div>
         <div className="dish-carousel-track" aria-hidden="true">
-          {items}
+          {items(true)}
         </div>
       </div>
     </div>
