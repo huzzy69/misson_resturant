@@ -683,7 +683,14 @@ function App() {
           </div>
 
           <div className="brand-booking-bar">
-            <div className="booking-tag">For Booking</div>
+            <a
+              href="https://adsonwifi.com/contact"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="booking-btn"
+            >
+              For Booking
+            </a>
             <div className="booking-info">
               www.adsonwifi.com | sales@fakhirgroup.com
             </div>

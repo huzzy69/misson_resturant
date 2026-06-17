@@ -1030,17 +1030,32 @@ body {
   padding-bottom: 0;
 }
 
-.booking-tag {
-  background: #fff;
+.booking-btn {
+  display: inline-block;
+  background: #ffffff;
   color: #0284c7;
   font-size: 1.1rem;
   font-weight: 800;
-  padding: 0.6rem 2.5rem;
-  border: 2px solid #bae6fd;
+  padding: 0.65rem 3rem;
+  border: 2.5px solid #38bdf8;
   border-bottom: none;
-  border-radius: 12px 12px 0 0;
-  box-shadow: 0 -3px 12px rgba(14,165,233,0.1);
-  letter-spacing: 0.03em;
+  border-radius: 14px 14px 0 0;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 -4px 14px rgba(14, 165, 233, 0.15);
+  transition: all 0.2s ease;
+}
+
+.booking-btn:hover {
+  background: #0ea5e9;
+  color: #ffffff;
+  box-shadow: 0 -6px 20px rgba(14, 165, 233, 0.35);
+  transform: translateY(-2px);
+}
+
+.booking-btn:active {
+  transform: translateY(0);
 }
 
 .booking-info {
