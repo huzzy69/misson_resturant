@@ -394,6 +394,16 @@ function App() {
     setActiveFilter('all');
   };
 
+  const handleOffersClick = (e) => {
+    e.preventDefault();
+    setCurrentView('offers');
+  };
+
+  const handleBrandClick = (e) => {
+    e.preventDefault();
+    setCurrentView('brand');
+  };
+
   const handleBackClick = () => {
     setCurrentView('home');
     setExpandedRestaurant(null);
@@ -439,11 +449,11 @@ function App() {
             Restaurants
           </a>
 
-          <a href="#offers" className="nav-item">
+          <a href="#offers" className="nav-item" onClick={handleOffersClick}>
             Offers
           </a>
 
-          <a href="#brand" className="nav-item">
+          <a href="#brand" className="nav-item" onClick={handleBrandClick}>
             Show Your Brand
           </a>
         </main>
@@ -506,6 +516,178 @@ function App() {
               <button className="no-results-btn" onClick={() => handleFilterChange('all')}>Show All Restaurants</button>
             </div>
           )}
+        </main>
+      )}
+
+      {currentView === 'offers' && (
+        <main className="offers-view">
+          <div className="restaurants-header">
+            <button className="back-button" onClick={handleBackClick}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+              Back
+            </button>
+            <h1 className="restaurants-title">Offers</h1>
+          </div>
+          
+          <div className="offers-layout">
+            <div className="offers-categories-list">
+              <a href="#" className="offers-category-item active">All Categories</a>
+              <a href="#" className="offers-category-item">Shopping Venues</a>
+              <a href="#" className="offers-category-item">Food & Beverages</a>
+              <a href="#" className="offers-category-item">Education Sector</a>
+              <a href="#" className="offers-category-item">Healthcare</a>
+              <a href="#" className="offers-category-item">Cinemas</a>
+              <a href="#" className="offers-category-item">Public Parks</a>
+              <a href="#" className="offers-category-item">Museums</a>
+              <a href="#" className="offers-category-item">On-Demand Internet</a>
+              <a href="#" className="offers-category-item">On the Move</a>
+            </div>
+          </div>
+        </main>
+      )}
+
+      {currentView === 'brand' && (
+        <main className="brand-view">
+          <div className="restaurants-header">
+            <button className="back-button" onClick={handleBackClick}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+              Back
+            </button>
+            <h1 className="restaurants-title">Show Your Brand</h1>
+          </div>
+
+          <div className="brand-promo-banner">
+            <h2 className="promo-text">
+              Buy 1 Get 1 <span className="promo-badge">FREE</span> on all the products Limited time offer
+            </h2>
+          </div>
+
+          <div className="brand-cards-container">
+            {/* Golden Sponsorship */}
+            <div className="brand-card gold-card">
+              <div className="card-icon-box">
+                <span className="emoji-icon">👑</span>
+              </div>
+              <div className="card-content">
+                <div className="card-title-section">
+                  <span className="tag premium-tag">Premium Offer</span>
+                  <h3 className="pkg-title">Golden</h3>
+                  <span className="pkg-subtitle">Sponsorship</span>
+                </div>
+                <div className="card-divider"></div>
+                <div className="card-price-section">
+                  <span className="price-label">Starting from</span>
+                  <div className="price-value">
+                    <span className="amount">30,000/-</span> <span className="currency">Monthly</span>
+                  </div>
+                  <span className="price-desc">Choose any of Prime Locations</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Silver Sponsorship */}
+            <div className="brand-card silver-card">
+              <div className="card-icon-box">
+                <span className="emoji-icon">🛡️</span>
+              </div>
+              <div className="card-content">
+                <div className="card-title-section">
+                  <span className="tag featured-tag">Featured</span>
+                  <h3 className="pkg-title">Silver</h3>
+                  <span className="pkg-subtitle">Sponsorship</span>
+                </div>
+                <div className="card-divider"></div>
+                <div className="card-price-section">
+                  <span className="price-label">Starting from</span>
+                  <div className="price-value">
+                    <span className="amount">20,000/-</span> <span className="currency">PKR</span>
+                  </div>
+                  <span className="price-desc">Choose any of Prime Locations</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Website Development */}
+            <div className="brand-card cyan-card">
+              <div className="card-icon-box">
+                <span className="emoji-icon">💻</span>
+              </div>
+              <div className="card-content">
+                <div className="card-title-section">
+                  <h3 className="pkg-title">Website</h3>
+                  <span className="pkg-subtitle">Development</span>
+                  <span className="pkg-extra">with Maps & Whatsapp Integration</span>
+                </div>
+                <div className="card-divider"></div>
+                <div className="card-price-section">
+                  <span className="price-label">Starting from</span>
+                  <div className="price-value">
+                    <span className="amount">45,000/-</span> <span className="currency">PKR</span>
+                  </div>
+                  <span className="price-desc multi-line">
+                    01 Year free domain<br />10 Corporate emails
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Image Ads */}
+            <div className="brand-card cyan-card">
+              <div className="card-icon-box">
+                <div className="shape-badge teal">
+                  <span className="emoji-icon">🖼️</span>
+                </div>
+              </div>
+              <div className="card-content">
+                <div className="card-title-section">
+                  <h3 className="pkg-title">Image</h3>
+                  <span className="pkg-subtitle">Ads</span>
+                </div>
+                <div className="card-divider"></div>
+                <div className="card-price-section">
+                  <span className="price-label">Starting from</span>
+                  <div className="price-value">
+                    <span className="amount">10,000/-</span> <span className="currency">PKR</span>
+                  </div>
+                  <span className="price-desc">1000 Impressions</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Video Ads */}
+            <div className="brand-card cyan-card">
+              <div className="card-icon-box">
+                <div className="shape-badge blue">
+                  <span className="emoji-icon">▶️</span>
+                </div>
+              </div>
+              <div className="card-content">
+                <div className="card-title-section">
+                  <h3 className="pkg-title">Video</h3>
+                  <span className="pkg-subtitle">Ads</span>
+                </div>
+                <div className="card-divider"></div>
+                <div className="card-price-section">
+                  <span className="price-label">Starting from</span>
+                  <div className="price-value">
+                    <span className="amount">20,000/-</span> <span className="currency">PKR</span>
+                  </div>
+                  <span className="price-desc">1000 Impressions</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="brand-booking-bar">
+            <div className="booking-tag">For Booking</div>
+            <div className="booking-info">
+              www.adsonwifi.com | sales@fakhirgroup.com
+            </div>
+          </div>
         </main>
       )}
 
