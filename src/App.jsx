@@ -299,45 +299,11 @@ const categoryOrder = [
 // ─── Components ───
 
 function DishCarousel({ activeFilter, onFilterChange }) {
-  const trackRef = useRef(null);
-  const wrapperRef = useRef(null);
-
-  const handleCardClick = (dishId, e) => {
-    onFilterChange(dishId);
-
-    // Scroll the clicked card to the center of the visible area
-    const card = e.currentTarget;
-    const wrapper = wrapperRef.current;
-    if (!wrapper || !card) return;
-
-    const wrapperRect = wrapper.getBoundingClientRect();
-    const cardRect = card.getBoundingClientRect();
-
-    // How far the card center is from the wrapper center
-    const wrapperCenter = wrapperRect.left + wrapperRect.width / 2;
-    const cardCenter = cardRect.left + cardRect.width / 2;
-    const offset = cardCenter - wrapperCenter;
-
-    // Pause animation
-    if (trackRef.current) {
-      trackRef.current.style.animationPlayState = 'paused';
-    }
-
-    wrapper.scrollBy({ left: offset, behavior: 'smooth' });
-
-    // Resume animation after scroll settles
-    setTimeout(() => {
-      if (trackRef.current) {
-        trackRef.current.style.animationPlayState = 'running';
-      }
-    }, 700);
-  };
-
-  const items = (ariahidden) => dishCategories.map((dish) => (
+  const items = dishCategories.map((dish) => (
     <div
-      key={dish.id + (ariahidden ? '-clone' : '')}
+      key={dish.id}
       className={`dish-card ${activeFilter === dish.id ? 'dish-card-active' : ''}`}
-      onClick={ariahidden ? undefined : (e) => handleCardClick(dish.id, e)}
+      onClick={() => onFilterChange(dish.id)}
       title={`Filter by ${dish.name}`}
     >
       <span className="dish-card-label">{dish.name}</span>
@@ -347,13 +313,13 @@ function DishCarousel({ activeFilter, onFilterChange }) {
   ));
 
   return (
-    <div className="dish-carousel-wrapper" ref={wrapperRef}>
+    <div className="dish-carousel-wrapper">
       <div className="dish-carousel">
-        <div className="dish-carousel-track" ref={trackRef} aria-hidden="false">
-          {items(false)}
+        <div className="dish-carousel-track" aria-hidden="false">
+          {items}
         </div>
         <div className="dish-carousel-track" aria-hidden="true">
-          {items(true)}
+          {items}
         </div>
       </div>
     </div>
@@ -503,7 +469,7 @@ function App() {
               Back
             </button>
             <h1 className="restaurants-title">
-              {activeFilter === 'all' ? 'Creek Walk Restaurants' : activeFilterName}
+              {activeFilter === 'all' ? 'Choose Creek Walk Restaurants by Speciality Dishes' : activeFilterName}
             </h1>
           </div>
 
@@ -564,7 +530,7 @@ function App() {
             </button>
             <h1 className="restaurants-title">Offers</h1>
           </div>
-          
+
           <div className="offers-layout">
             <div className="offers-categories-list">
               <a href="#" className="offers-category-item active">All Categories</a>
