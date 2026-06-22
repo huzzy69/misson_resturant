@@ -292,9 +292,14 @@ body {
 
 .dish-carousel {
   display: flex;
-  overflow: hidden;
+  overflow-x: auto;
   position: relative;
   padding: 0.5rem 0;
+  scrollbar-width: none;
+}
+
+.dish-carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .dish-carousel-track {
@@ -302,16 +307,50 @@ body {
   flex-shrink: 0;
   gap: 1rem;
   padding-right: 1rem;
-  animation: scrollMarquee 35s linear infinite;
 }
 
-.dish-carousel:hover .dish-carousel-track {
-  animation-play-state: paused;
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--text-primary);
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s;
+  line-height: 1;
+  padding-bottom: 4px; /* visually center arrow */
 }
 
-@keyframes scrollMarquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+.carousel-arrow:hover {
+  background: white;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  color: var(--accent-color);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.carousel-arrow.left {
+  left: 20px;
+}
+
+.carousel-arrow.right {
+  right: 20px;
+}
+
+@media (max-width: 640px) {
+  .carousel-arrow {
+    display: none;
+  }
 }
 
 .dish-card {
@@ -411,6 +450,37 @@ body {
   font-weight: 800;
   color: var(--text-primary);
   letter-spacing: -0.02em;
+}
+
+/* Search Bar */
+.search-container {
+  margin-bottom: 1.5rem;
+  width: 100%;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 9999px;
+  border: 2px solid var(--card-border);
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  outline: none;
+  transition: all 0.2s ease-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  font-family: 'Inter', sans-serif;
+}
+
+.search-input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 4px 12px var(--hover-shadow);
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
 }
 
 /* Active Dish Card */

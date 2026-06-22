@@ -299,29 +299,78 @@ const categoryOrder = [
 // ─── Components ───
 
 function DishCarousel({ activeFilter, onFilterChange }) {
-  const items = dishCategories.map((dish) => (
-    <div
-      key={dish.id}
-      className={`dish-card ${activeFilter === dish.id ? 'dish-card-active' : ''}`}
-      onClick={() => onFilterChange(dish.id)}
-      title={`Filter by ${dish.name}`}
-    >
-      <span className="dish-card-label">{dish.name}</span>
-      <img src={dish.image} alt={dish.name} className="dish-card-image" loading="lazy" />
-      {activeFilter === dish.id && <div className="dish-card-active-indicator"></div>}
-    </div>
-  ));
+  const carouselRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const scrollLeft = () => {
+    if (carouselRef.current) {
+      const { scrollLeft, scrollWidth } = carouselRef.current;
+      if (scrollLeft <= 0) {
+        carouselRef.current.scrollLeft = scrollWidth / 2;
+      }
+      carouselRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (carouselRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+      if (Math.ceil(scrollLeft + clientWidth) >= scrollWidth - 10) {
+        carouselRef.current.scrollLeft = scrollWidth / 2;
+      }
+      carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  };
+
+  useEffect(() => {
+    if (isHovered) return;
+    const interval = setInterval(() => {
+      scrollRight();
+    }, 3500); // Auto-scroll every 3.5 seconds
+    return () => clearInterval(interval);
+  }, [isHovered]);
+
+  const items = Array.from({ length: 30 }).flatMap((_, index) => 
+    dishCategories.map((dish) => (
+      <div
+        key={`${dish.id}-${index}`}
+        className={`dish-card ${activeFilter === dish.id ? 'dish-card-active' : ''}`}
+        onClick={() => onFilterChange(dish.id)}
+        title={`Filter by ${dish.name}`}
+      >
+        <span className="dish-card-label">{dish.name}</span>
+        <img src={dish.image} alt={dish.name} className="dish-card-image" loading="lazy" />
+        {activeFilter === dish.id && <div className="dish-card-active-indicator"></div>}
+      </div>
+    ))
+  );
+
+  // Start in the middle so user can infinitely scroll in both directions
+  useEffect(() => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollLeft = carouselRef.current.scrollWidth / 2;
+    }
+  }, []);
 
   return (
-    <div className="dish-carousel-wrapper">
-      <div className="dish-carousel">
+    <div 
+      className="dish-carousel-wrapper"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={() => setIsHovered(true)}
+      onTouchEnd={() => setTimeout(() => setIsHovered(false), 2000)}
+    >
+      <button className="carousel-arrow left" onClick={scrollLeft} aria-label="Scroll left">
+        &#8249;
+      </button>
+      <div className="dish-carousel" ref={carouselRef}>
         <div className="dish-carousel-track" aria-hidden="false">
           {items}
         </div>
-        <div className="dish-carousel-track" aria-hidden="true">
-          {items}
-        </div>
       </div>
+      <button className="carousel-arrow right" onClick={scrollRight} aria-label="Scroll right">
+        &#8250;
+      </button>
     </div>
   );
 }
@@ -386,12 +435,14 @@ function App() {
   const [currentView, setCurrentView] = useState('home');
   const [expandedRestaurant, setExpandedRestaurant] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleRestaurantsClick = (e) => {
     e.preventDefault();
     setCurrentView('restaurants');
     setExpandedRestaurant(null);
     setActiveFilter('all');
+    setSearchQuery('');
   };
 
   const handleOffersClick = (e) => {
@@ -408,6 +459,7 @@ function App() {
     setCurrentView('home');
     setExpandedRestaurant(null);
     setActiveFilter('all');
+    setSearchQuery('');
   };
 
   const toggleRestaurant = (id) => {
@@ -419,10 +471,18 @@ function App() {
     setExpandedRestaurant(null);
   };
 
-  // Filter restaurants based on active filter
-  const filteredRestaurants = activeFilter === 'all'
-    ? restaurantsData
-    : restaurantsData.filter(r => r.tags.includes(activeFilter));
+  // Filter restaurants based on active filter and search query
+  const filteredRestaurants = restaurantsData.filter(r => {
+    const matchesFilter = activeFilter === 'all' || r.tags.includes(activeFilter);
+    const searchLower = searchQuery.toLowerCase();
+    const matchesSearch = !searchQuery || 
+      r.name.toLowerCase().includes(searchLower) ||
+      r.specialty.toLowerCase().includes(searchLower) ||
+      r.type.toLowerCase().includes(searchLower) ||
+      r.cuisines.some(c => c.toLowerCase().includes(searchLower)) ||
+      r.dishes.some(d => d.toLowerCase().includes(searchLower));
+    return matchesFilter && matchesSearch;
+  });
 
   // Group filtered restaurants by category
   const groupedRestaurants = categoryOrder.reduce((groups, cat) => {
@@ -471,6 +531,17 @@ function App() {
             <h1 className="restaurants-title">
               {activeFilter === 'all' ? 'Choose Creek Walk Restaurants by Speciality Dishes' : activeFilterName}
             </h1>
+          </div>
+
+          {/* Search Bar */}
+          <div className="search-container">
+            <input 
+              type="text" 
+              className="search-input" 
+              placeholder="Search restaurants, dishes, or cuisines..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
 
           {/* Dish Filter Carousel */}
