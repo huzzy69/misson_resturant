@@ -11,6 +11,8 @@ import imgFrenchFood from './assets/dish_french_food.png';
 import imgMexicanFood from './assets/dish_mexican_food.png';
 import imgBiryani from './assets/dish_biryani.png';
 import imgWildFlour from './assets/wild_flour_logo.png';
+import imgFluffyChef from './assets/the_fluffy_chef_Logo.jpeg';
+
 
 // ─── Dish Filter Categories ───
 const dishCategories = [
@@ -310,6 +312,111 @@ const restaurantsData = [
         ]
       }
     ]
+  },
+  {
+    id: 19,
+    name: "The Fluffy Chef",
+    type: "Burgers",
+    category: "Main Food Carts & Grills",
+    image: imgFluffyChef,
+    tags: ['burgers', 'fries'],
+    specialty: "Karachi's Best Smash Burgers & Viral Lacha Paratha Burgers",
+    cuisines: ["Burgers", "Fast Food"],
+    dishes: [
+      "Viral Lacha Paratha Beef Smash", "American Classic", "Butter Burger",
+      "Crispy Chicken", "Plain Fries", "Masala Wings"
+    ],
+    whatsapp: "+923058446854",
+    menuLink: "#",
+    orderLink: "#",
+    rating: 4.8,
+    priceRange: "$$",
+    isPopular: true,
+    fullMenu: [
+      {
+        section: "Combo Meals",
+        items: [
+          { name: "American Classic Combo", price: "Rs 1,595", desc: "" },
+          { name: "Smokey BBQ Double Beef Smash Combo", price: "Rs 1,595", desc: "" },
+          { name: "Oklohama Double Beef Smash Combo", price: "Rs 1,595", desc: "" },
+          { name: "Chilli Double Beef Smash Combo", price: "Rs 1,595", desc: "" },
+          { name: "Crispy Chicken Combo", price: "Rs 995", desc: "" },
+          { name: "Honey Chipotle Combo", price: "Rs 1,195", desc: "" },
+          { name: "Korean Chicken Combo", price: "Rs 1,195", desc: "" },
+          { name: "Nashville Chicken Combo", price: "Rs 1,049", desc: "" }
+        ]
+      },
+      {
+        section: "Family Deals",
+        items: [
+          { name: "Fluffy Family Deal 1", price: "Rs 2,899", desc: "4 Crispy Chicken Burger, 2 Fries, 4 Cold Drinks" }
+        ]
+      },
+      {
+        section: "Beef Burgers",
+        items: [
+          { name: "Butter Burger", price: "Rs 1,143", desc: "150 gms charcoal smoked beef patty with butter inside , house sauce , cheese , lettuce and caramelised onions and mushroom inside a toasted brioche bun." },
+          { name: "OG Fluffy with Egg", price: "Rs 1,186", desc: "150 gms beef patty with house sauce, lettuce, sunny side up egg, cheese inside a toasted brioche bun ." },
+          { name: "Three cheese Burger with beef bacon", price: "Rs 1,186", desc: "150 gms beef patty filled with three types of cheese inside , house sauce ,beef bacon, lettuce and relish in a toasted brioch bun" }
+        ]
+      },
+      {
+        section: "FRIES",
+        items: [
+          { name: "Plain Fries", price: "Rs 336", desc: "Golden, Crispy, And Lightly Seasoned, Our French Fries Are The Perfect Side Or A Satisfying Snack." },
+          { name: "Masala Fries", price: "Rs 378", desc: "Crispy, Flavorful, And Packed With Spice—Our Masala Fries Are A Bold Twist On A Classic!" },
+          { name: "Chipotle Fries", price: "Rs 548", desc: "Crispy Fries With Smoky Chipotle Mayo, Melted Cheese, And Seasoned Chicken For The Perfect Flavor Kick." },
+          { name: "fluffy Animal Fries", price: "Rs 846", desc: "Loaded fries with mustard sauce, chopped onions, chopped tomato's, relish, beef pepperoni , smashed beef patty and mozzarella cheese on the top." },
+          { name: "curly fries", price: "Rs 463", desc: "curly fries with inhouse seasoning" }
+        ]
+      },
+      {
+        section: "TENDERS",
+        items: [
+          { name: "Chicken Tenders", price: "Rs 548", desc: "Crispy, Juicy, And Perfectly Golden—Our Plain Tenders Are Simply Delicious!" },
+          { name: "Nashville Tenders", price: "Rs 591", desc: "Crispy, Juicy Tenders Coated In Bold, Spicy Nashville Seasoning For A Fiery Kick!" },
+          { name: "Buffalo Tenders", price: "Rs 591", desc: "Crispy, Juicy Tenders Tossed In Zesty Buffalo Sauce For The Perfect Spicy Kick!" },
+          { name: "Korean Tenders", price: "Rs 591", desc: "Crispy Tenders Glazed In Sweet And Spicy Korean Sauce, Topped With Sesame Seeds!" }
+        ]
+      },
+      {
+        section: "BEEF SMASH BURGERS",
+        items: [
+          { name: "American Classic", price: "Rs 761", desc: "Double Smashed Patties With Cheese, Lettuce, Raw Onions, Tomato & Mustard Sauce" },
+          { name: "Smoky BBQ", price: "Rs 761", desc: "Double Smashed Patties With Cheese, Lettuce, Sauteed Mushrooms, Onions & BBQ Sauce" },
+          { name: "Oklahoma Onion Burger", price: "Rs 761", desc: "Double Beef Patties, Caramelized Onions, Melted American Cheese, Lettuce & Mustard" },
+          { name: "Chilli Beef Smash", price: "Rs 786", desc: "Double Beef Patties, Chilies, Cheddar Cheese, Fresh Jalapeños, Diced Onions, & Sour Cream" },
+          { name: "Viral Lacha Paratha Beef Smash", price: "Rs 931", desc: "140 gms Double beef patties ,cheese , lettuce, onions, tomato's ,relish in crispy Lacha paratha." },
+          { name: "Animal Smash", price: "Rs 786", desc: "" }
+        ]
+      },
+      {
+        section: "CHICKEN BURGERS",
+        items: [
+          { name: "Crispy Chicken", price: "Rs 591", desc: "Juicy, Tender Chicken Fillet Golden-Brown Crust, Perfect Crunch And Flavorful" },
+          { name: "Nashville Chicken", price: "Rs 676", desc: "Spicy, Crispy Chicken Paired With Cool, Crunchy Toppings, All In A Soft Brioche Bun." },
+          { name: "Korean Chicken", price: "Rs 718", desc: "Juicy Chicken Fillet With Korean Spicy-Sweet Sauce, Crisp Coleslaw, & Jalapeños." },
+          { name: "Honey Chipotle Chicken", price: "Rs 676", desc: "Tempting Mix Of Sweet, Smoky, And Spicy Tastes, Juicy Tasty Chicken Fillet" },
+          { name: "Grilled Chicken", price: "Rs 676", desc: "Marinated Chicken Breast, Lettuce, Mushrooms, And Tomatoes, Toasted Brioche Bun" }
+        ]
+      },
+      {
+        section: "WINGS",
+        items: [
+          { name: "Masala Wings", price: "Rs 506", desc: "Crispy Wings Tossed In Bold, Flavorful Masala Spices For A Perfect Spicy Kick!" },
+          { name: "Nashville Wings", price: "Rs 548", desc: "Crispy Wings Coated In Fiery Nashville Seasoning For A Bold, Spicy Bite!" },
+          { name: "Buffalo Wings", price: "Rs 548", desc: "Crispy, Juicy Wings Drenched In Zesty Buffalo Sauce For A Bold, Tangy Heat!" },
+          { name: "Korean Wings", price: "Rs 552", desc: "Crispy Wings Glazed In Sweet And Spicy Korean Sauce, Topped With Sesame Seeds!" }
+        ]
+      },
+      {
+        section: "DRINKS",
+        items: [
+          { name: "Cold Drinks", price: "Rs 127", desc: "" },
+          { name: "Mineral Water", price: "Rs 85", desc: "500ml" }
+        ]
+      }
+    ]
   }
 ];
 
@@ -439,7 +546,6 @@ function RestaurantCard({ restaurant, onViewMenu }) {
         <div className="grid-rc-desc">{restaurant.specialty}</div>
         <div className="grid-rc-actions">
           <button onClick={(e) => { e.preventDefault(); onViewMenu(restaurant.id); }} className="grid-rc-btn">Menu</button>
-          <a href={restaurant.orderLink} className="grid-rc-btn">Order</a>
           <a href={`https://wa.me/${restaurant.whatsapp.replace('+', '')}`} target="_blank" rel="noopener noreferrer" className="grid-rc-btn whatsapp">WhatsApp</a>
         </div>
       </div>
