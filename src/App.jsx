@@ -658,11 +658,11 @@ function App() {
           </a>
 
           <a href="#offers" className="nav-item" onClick={handleOffersClick}>
-            Offers
+            My Offers
           </a>
 
           <a href="#brand" className="nav-item" onClick={handleBrandClick}>
-            Show Your Brand
+            Advertise With Us
           </a>
         </main>
       )}
@@ -797,21 +797,27 @@ function App() {
               </svg>
               Back
             </button>
-            <h1 className="restaurants-title">Offers</h1>
+            <h1 className="restaurants-title">My Offers</h1>
           </div>
 
           <div className="offers-layout">
             <div className="offers-categories-list">
               <a href="#" className="offers-category-item active">All Categories</a>
-              <a href="#" className="offers-category-item">Shopping Venues</a>
-              <a href="#" className="offers-category-item">Food & Beverages</a>
-              <a href="#" className="offers-category-item">Education Sector</a>
-              <a href="#" className="offers-category-item">Healthcare</a>
-              <a href="#" className="offers-category-item">Cinemas</a>
-              <a href="#" className="offers-category-item">Public Parks</a>
-              <a href="#" className="offers-category-item">Museums</a>
-              <a href="#" className="offers-category-item">On-Demand Internet</a>
-              <a href="#" className="offers-category-item">On the Move</a>
+              <a href="#" className="offers-category-item">Computers & Office Supplies</a>
+              <a href="#" className="offers-category-item">Mobiles, Tablets & Accessories</a>
+              <a href="#" className="offers-category-item">TV, Appliances & Electronics</a>
+              <a href="#" className="offers-category-item">Health, Beauty & Perfumes</a>
+              <a href="#" className="offers-category-item">Grocery</a>
+              <a href="#" className="offers-category-item">Home, Kitchen & Pets</a>
+              <a href="#" className="offers-category-item">Tools & Home Improvement</a>
+              <a href="#" className="offers-category-item">Toys, Games & Baby</a>
+              <a href="#" className="offers-category-item">Sports, Fitness & Outdoors</a>
+              <a href="#" className="offers-category-item">Books & Stationery Items</a>
+              <a href="#" className="offers-category-item">Video Games</a>
+              <a href="#" className="offers-category-item">Automotive</a>
+              <a href="#" className="offers-category-item">Women's Fashion</a>
+              <a href="#" className="offers-category-item">Men's Fashion</a>
+              <a href="#" className="offers-category-item">Kids Fashion</a>
             </div>
           </div>
         </main>
@@ -826,7 +832,7 @@ function App() {
               </svg>
               Back
             </button>
-            <h1 className="restaurants-title">Show Your Brand</h1>
+            <h1 className="restaurants-title">Advertise with Us</h1>
           </div>
 
           <div className="brand-promo-banner">
